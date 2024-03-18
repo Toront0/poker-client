@@ -121,9 +121,7 @@ const UserGamesPreview = ({ onBack }: IUserGamesPreview) => {
               ))}
 
               {data?.totalGames > 5 && (
-                <Button size="sm">
-                  Посмотреть остальные ${data.totalGames - 5}
-                </Button>
+                <Button>Посмотреть остальные ${data.totalGames - 5}</Button>
               )}
             </div>
           ) : (
