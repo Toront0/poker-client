@@ -21,12 +21,10 @@ export type GameType = {
   mode: string;
   prizeDestribution: string;
   state: string;
-  autoStart: boolean;
 };
 
 const Game = ({
   id,
-  createdAt,
   name,
   buyIn,
   amountOfPlayers,
@@ -34,9 +32,7 @@ const Game = ({
   isPrivate,
   playersInRoom,
   mode,
-  prizeDestribution,
-  state,
-  autoStart
+  state
 }: GameType) => {
   const authState = useAuthState((s) => s.user);
   const [expandGameDetail, setExpandGameDetail] = useState(false);

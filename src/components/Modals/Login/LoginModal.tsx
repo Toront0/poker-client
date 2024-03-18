@@ -3,12 +3,11 @@ import { useForm } from "../../../lib/hooks/useForm";
 import Input from "../../UI/Input";
 import ModalPortal from "../ModalPortal";
 
-import { IoMdClose } from "react-icons/io";
 import WrongUsername from "./WrongUsername";
 import WrongPassword from "./WrongPassword";
 import { SyntheticEvent, useState } from "react";
 import { useAuthState } from "../../../store/store";
-import CloseIcon from "../../Icons/CloseIcon";
+
 import Button from "../../Button";
 import ChangePassword from "../ChangePassword/ChangePassword";
 import ModalContainer from "../ModalContainer";
@@ -19,7 +18,7 @@ interface ILoginModal {
 }
 
 const LoginModal = ({ onClose }: ILoginModal) => {
-  const { values, errors, handleChange } = useForm<ILoginForm>();
+  const { values, handleChange } = useForm<ILoginForm>();
   const [loginResult, setLoginResult] = useState<
     "wrong-username" | "invalid-password" | undefined
   >(undefined);

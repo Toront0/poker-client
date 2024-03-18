@@ -4,7 +4,6 @@ import { cn } from "../lib/utils";
 
 interface IButton extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: "primary" | "secondary";
-  size?: "sm" | "base";
   isLoading?: boolean;
 }
 
@@ -12,7 +11,6 @@ const Button = ({
   children,
   variant = "primary",
   isLoading,
-  size = "base",
   ...rest
 }: IButton) => {
   return (

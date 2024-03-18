@@ -1,4 +1,3 @@
-import { redirect, useLoaderData } from "react-router-dom";
 import Game, { GameType } from "./Game";
 import { useEffect, useRef, useState } from "react";
 import { useAuthState, useToaster } from "../../store/store";
@@ -131,7 +130,6 @@ const Games = ({ games }: IGames) => {
             mode={v.mode}
             prizeDestribution={v.prizeDestribution}
             state={v.state}
-            autoStart={v.autoStart}
           />
         ))}
       </section>

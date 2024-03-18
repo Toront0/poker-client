@@ -5,9 +5,13 @@ import { TbArrowBackUp } from "react-icons/tb";
 
 import img from "../../assets/bg.webp";
 
-const WinnerModal = () => {
+interface IWinnerModal {
+  onClose: () => void;
+}
+
+const WinnerModal = ({ onClose }: IWinnerModal) => {
   return (
-    <ModalPortal>
+    <ModalPortal onClose={onClose}>
       <div className="w-[500px] rounded relative bg-gray-2 p-4">
         <button className="text-2xl text-gray-12 absolute top-0 -right-8">
           <IoMdClose />

@@ -10,7 +10,7 @@ import { MdErrorOutline } from "react-icons/md";
 
 import { useAuthState } from "../../../store/store";
 import { SyntheticEvent, useEffect, useState } from "react";
-import CloseIcon from "../../Icons/CloseIcon";
+
 import Button from "../../Button";
 import ModalContainer from "../ModalContainer";
 import ModalHeader from "../ModalHeader";

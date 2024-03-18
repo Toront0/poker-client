@@ -3,8 +3,6 @@ import { createContext, useState, Dispatch, SetStateAction } from "react";
 type SelectContextType = {
   isOpen: boolean;
   setIsOpen: Dispatch<SetStateAction<boolean>>;
-  currValue: any;
-  setCurrValue: Dispatch<SetStateAction<any>>;
   chosenOption: number;
   setChosenOption: Dispatch<SetStateAction<number>>;
 };
@@ -17,7 +15,6 @@ export default function SelectProvider({
   children: React.ReactNode;
 }) {
   const [isOpen, setIsOpen] = useState(false);
-  const [currValue, setCurrValue] = useState("");
   const [chosenOption, setChosenOption] = useState(0);
 
   return (
@@ -25,8 +22,6 @@ export default function SelectProvider({
       value={{
         isOpen,
         setIsOpen,
-        currValue,
-        setCurrValue,
         chosenOption,
         setChosenOption
       }}

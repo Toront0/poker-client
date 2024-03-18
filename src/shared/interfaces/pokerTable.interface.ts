@@ -32,6 +32,7 @@ export interface ITable {
   amountOfPlayers: number;
 }
 
+// eslint-disable-next-line
 export type WSResponse<T = any> = {
   action: string;
   data: T;

@@ -25,141 +25,128 @@ import LimitChangesModal from "./LimitChangesModal";
 
 import { useParams } from "react-router-dom";
 
-const playersData = [
-  // id: number;
-  // username: string;
-  // chips: number;
-  // action: string;
-  // status: string;
-  // img: string;
-  // time_remains: number;
-  // time_bank: number;
-  // hand: string[];
-  // bet: number;
-  // is_dealer: boolean;
-  // emoji: number;
-  // nextAction: string;
-  {
-    id: 1,
-    username: "333",
-    chips: 50000,
-    action: "",
-    status: "active",
-    img: table,
-    time_remains: 20,
-    time_bank: 20,
-    hand: ["1spades", "1clubs"],
-    bet: 0,
-    is_dealer: true,
-    emoji: 0,
-    nextAction: ""
-  },
-  {
-    id: 2,
-    username: "123",
-    chips: 50000,
-    action: "",
-    status: "waiting",
-    img: table,
-    time_remains: 20,
-    time_bank: 20,
-    hand: ["", ""],
-    bet: 0,
-    is_dealer: true,
-    emoji: 0,
-    nextAction: ""
-  },
-  {
-    id: 3,
-    username: "123",
-    chips: 50000,
-    action: "",
-    status: "waiting",
-    img: table,
-    time_remains: 20,
-    time_bank: 20,
-    hand: ["", ""],
-    bet: 0,
-    is_dealer: true,
-    emoji: 0,
-    nextAction: ""
-  },
-  {
-    id: 4,
-    username: "123",
-    chips: 50000,
-    action: "",
-    status: "waiting",
-    img: table,
-    time_remains: 20,
-    time_bank: 20,
-    hand: ["", ""],
-    bet: 0,
-    is_dealer: true,
-    emoji: 0,
-    nextAction: ""
-  },
-  {
-    id: 5,
-    username: "123",
-    chips: 50000,
-    action: "",
-    status: "waiting",
-    img: table,
-    time_remains: 20,
-    time_bank: 20,
-    hand: ["", ""],
-    bet: 0,
-    is_dealer: true,
-    emoji: 0,
-    nextAction: ""
-  },
-  {
-    id: 6,
-    username: "123",
-    chips: 50000,
-    action: "",
-    status: "waiting",
-    img: table,
-    time_remains: 20,
-    time_bank: 20,
-    hand: ["", ""],
-    bet: 0,
-    is_dealer: true,
-    emoji: 0,
-    nextAction: ""
-  },
-  {
-    id: 7,
-    username: "123",
-    chips: 50000,
-    action: "",
-    status: "waiting",
-    img: table,
-    time_remains: 20,
-    time_bank: 20,
-    hand: ["", ""],
-    bet: 0,
-    is_dealer: true,
-    emoji: 0,
-    nextAction: ""
-  },
-  {
-    id: 8,
-    username: "123",
-    chips: 50000,
-    action: "",
-    status: "waiting",
-    img: table,
-    time_remains: 20,
-    time_bank: 20,
-    hand: ["", ""],
-    bet: 0,
-    is_dealer: true,
-    emoji: 0,
-    nextAction: ""
-  }
-];
+// const playersData = [
+//   {
+//     id: 1,
+//     username: "333",
+//     chips: 50000,
+//     action: "",
+//     status: "active",
+//     img: table,
+//     time_remains: 20,
+//     time_bank: 20,
+//     hand: ["1spades", "1clubs"],
+//     bet: 0,
+//     is_dealer: true,
+//     emoji: 0,
+//     nextAction: ""
+//   },
+//   {
+//     id: 2,
+//     username: "123",
+//     chips: 50000,
+//     action: "",
+//     status: "waiting",
+//     img: table,
+//     time_remains: 20,
+//     time_bank: 20,
+//     hand: ["", ""],
+//     bet: 0,
+//     is_dealer: true,
+//     emoji: 0,
+//     nextAction: ""
+//   },
+//   {
+//     id: 3,
+//     username: "123",
+//     chips: 50000,
+//     action: "",
+//     status: "waiting",
+//     img: table,
+//     time_remains: 20,
+//     time_bank: 20,
+//     hand: ["", ""],
+//     bet: 0,
+//     is_dealer: true,
+//     emoji: 0,
+//     nextAction: ""
+//   },
+//   {
+//     id: 4,
+//     username: "123",
+//     chips: 50000,
+//     action: "",
+//     status: "waiting",
+//     img: table,
+//     time_remains: 20,
+//     time_bank: 20,
+//     hand: ["", ""],
+//     bet: 0,
+//     is_dealer: true,
+//     emoji: 0,
+//     nextAction: ""
+//   },
+//   {
+//     id: 5,
+//     username: "123",
+//     chips: 50000,
+//     action: "",
+//     status: "waiting",
+//     img: table,
+//     time_remains: 20,
+//     time_bank: 20,
+//     hand: ["", ""],
+//     bet: 0,
+//     is_dealer: true,
+//     emoji: 0,
+//     nextAction: ""
+//   },
+//   {
+//     id: 6,
+//     username: "123",
+//     chips: 50000,
+//     action: "",
+//     status: "waiting",
+//     img: table,
+//     time_remains: 20,
+//     time_bank: 20,
+//     hand: ["", ""],
+//     bet: 0,
+//     is_dealer: true,
+//     emoji: 0,
+//     nextAction: ""
+//   },
+//   {
+//     id: 7,
+//     username: "123",
+//     chips: 50000,
+//     action: "",
+//     status: "waiting",
+//     img: table,
+//     time_remains: 20,
+//     time_bank: 20,
+//     hand: ["", ""],
+//     bet: 0,
+//     is_dealer: true,
+//     emoji: 0,
+//     nextAction: ""
+//   },
+//   {
+//     id: 8,
+//     username: "123",
+//     chips: 50000,
+//     action: "",
+//     status: "waiting",
+//     img: table,
+//     time_remains: 20,
+//     time_bank: 20,
+//     hand: ["", ""],
+//     bet: 0,
+//     is_dealer: true,
+//     emoji: 0,
+//     nextAction: ""
+//   }
+// ];
 
 const PokerTable = () => {
   const { id } = useParams();

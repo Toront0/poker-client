@@ -4,6 +4,7 @@ export const useOutsideClick = (cb: () => void) => {
   const ref = useRef<HTMLDivElement>();
 
   useEffect(() => {
+    // eslint-disable-next-line
     const handler = (e: any) => {
       if (
         e.target.hasAttribute("data-ignore-outside-clicks") ||

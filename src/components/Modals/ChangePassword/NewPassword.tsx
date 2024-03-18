@@ -30,6 +30,7 @@ const NewPassword = ({ onClose }: INewPassword) => {
         onClose();
       }
     } catch (error) {
+      console.error(error);
     } finally {
       setIsLoading(false);
     }
@@ -56,7 +57,12 @@ const NewPassword = ({ onClose }: INewPassword) => {
             type="password"
             value={values.password || ""}
             error={!!errors.password}
-            onChange={(e) => handleChange(e.target.name, e.target.value)}
+            onChange={(e) =>
+              handleChange(
+                e.target.name as keyof IChangePassword,
+                e.target.value
+              )
+            }
           />
           {errors.password && (
             <p className="text-sm text-[#f85a5a] font-medium">
@@ -78,7 +84,12 @@ const NewPassword = ({ onClose }: INewPassword) => {
             type="password"
             value={values.confirmPassword || ""}
             error={!!errors.confirmPassword}
-            onChange={(e) => handleChange(e.target.name, e.target.value)}
+            onChange={(e) =>
+              handleChange(
+                e.target.name as keyof IChangePassword,
+                e.target.value
+              )
+            }
           />
           {errors.confirmPassword && (
             <p className="text-sm text-[#f85a5a] font-medium">

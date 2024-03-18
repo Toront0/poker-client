@@ -4,7 +4,7 @@ import { SelectContext } from "../../../lib/context/select-context";
 import { useOutsideClick } from "../../../lib/hooks/useOutsideClick";
 
 const SelectCloseOutside = ({ children }: { children: React.ReactNode }) => {
-  const { setIsOpen, currValue } = useContext(SelectContext);
+  const { setIsOpen } = useContext(SelectContext);
 
   const ref = useOutsideClick(() => setIsOpen(false));
 

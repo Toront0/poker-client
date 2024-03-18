@@ -2,7 +2,7 @@ import { BsCheck } from "react-icons/bs";
 
 interface ICheckBox {
   label: string;
-  onChange: (n: any) => void;
+  onChange: (n: any) => void; // eslint-disable-line
   name: string;
   id?: string;
   checked: boolean;

@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 
 import Button from "../Button";
-import CloseIcon from "../Icons/CloseIcon";
+
 import ModalPortal from "./ModalPortal";
 import { useAuthState } from "../../store/store";
 import { formatTimeDuration } from "../../lib/utils";

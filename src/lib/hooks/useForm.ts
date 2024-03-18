@@ -7,7 +7,7 @@ export const useForm = <T>(validate?: (v: T) => T) => {
   useEffect(() => {
     if (validate) setErrors(validate(values));
   }, [values]);
-
+  // eslint-disable-next-line
   const handleChange = (name: keyof T, value: any) => {
     setValues((prev) => {
       return {

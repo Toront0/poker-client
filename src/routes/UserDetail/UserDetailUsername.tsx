@@ -31,6 +31,7 @@ const UserDetailUsername = ({ username, userId }: IUserDetailUsername) => {
       if (res.status === 400) {
         throw new Error("Такой никнейм уже занят.");
       }
+      // eslint-disable-next-line
     } catch (error: any) {
       setError(error.message);
     } finally {

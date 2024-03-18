@@ -6,7 +6,7 @@ import {
   ToastType,
   UserType
 } from "./types";
-import { ITable } from "../routes/PokerTable/PokerTable";
+import { ITable } from "../shared/interfaces/pokerTable.interface";
 
 export const useAuthState = create<IUseAuthState>((set, get) => ({
   user: {} as UserType,

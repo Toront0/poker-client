@@ -16,13 +16,11 @@ const GameFinalResults = ({
   amountOfPlayers,
   buyIn,
   createdAt,
-  id,
   isPrivate,
   mode,
   name,
   players,
-  prize,
-  prizeDestribution
+  prize
 }: IGameFinalResults) => {
   const navigate = useNavigate();
 
@@ -44,7 +42,7 @@ const GameFinalResults = ({
             </div>
 
             <ul>
-              {formatWinners().map((w, i) => (
+              {formatWinners().map((w) => (
                 <li
                   key={w.id}
                   className="flex my-4 items-center justify-between w-full"

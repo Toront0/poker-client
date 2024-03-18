@@ -1,13 +1,3 @@
-interface IWSSimpleReq {
-  (playerId: number, wsConn: WebSocket): void;
-}
-
-interface IWSBetReq {
-  wsConn?: WebSocket;
-  bet: number;
-  playerId: number;
-}
-
 type simpleActionFn = (playerId: number, wsConn?: WebSocket) => void;
 type betActionFn = (playerId: number, bet: number, wsConn?: WebSocket) => void;
 

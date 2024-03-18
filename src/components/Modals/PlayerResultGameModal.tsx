@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import ModalPortal from "./ModalPortal";
-import CloseIcon from "../Icons/CloseIcon";
 import { useAuthState } from "../../store/store";
 import ModalContainer from "./ModalContainer";
 import ModalHeader from "./ModalHeader";

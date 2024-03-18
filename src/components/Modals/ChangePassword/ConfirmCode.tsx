@@ -3,7 +3,9 @@ import {
   SetStateAction,
   SyntheticEvent,
   useRef,
-  useState
+  useState,
+  ChangeEvent,
+  KeyboardEvent
 } from "react";
 import Button from "../../Button";
 
@@ -27,7 +29,7 @@ const ConfirmCode = ({ email, setActiveStep, onClose }: IConfirmCode) => {
     useRef<HTMLInputElement>(null)
   ];
 
-  const handleInput = (e: any, index: number) => {
+  const handleInput = (e: ChangeEvent<HTMLInputElement>, index: number) => {
     if (!isCodeCorrect) {
       setIsCodeCorrect(null);
     }
@@ -46,8 +48,10 @@ const ConfirmCode = ({ email, setActiveStep, onClose }: IConfirmCode) => {
     if (/^[a-z]+$/.test(e.target.value)) {
       const uc = e.target.value.toUpperCase();
       newCode[index] = uc;
-      // @ts-ignore: Object is possibly 'null'.
-      inputRefs[index].current.value = uc;
+
+      if (inputRefs[index].current) {
+        inputRefs[index].current!.value = uc;
+      }
     } else {
       newCode[index] = e.target.value;
     }
@@ -57,17 +61,15 @@ const ConfirmCode = ({ email, setActiveStep, onClose }: IConfirmCode) => {
 
     if (e.target.value === "") {
       if (previousInput) {
-        // @ts-ignore: Object is possibly 'null'.
-        previousInput.current.focus();
+        previousInput.current?.focus();
       }
     } else if (nextInput) {
-      // @ts-ignore: Object is possibly 'null'.
-      nextInput.current.select();
+      nextInput.current?.select();
     }
   };
 
-  function handleKeyDown(e: any, index: number) {
-    const input = e.target;
+  function handleKeyDown(e: KeyboardEvent<HTMLInputElement>, index: number) {
+    const input = e.currentTarget;
     const previousInput = inputRefs[index - 1];
 
     if ((e.keyCode === 8 || e.keyCode === 46) && input.value === "") {
@@ -76,8 +78,7 @@ const ConfirmCode = ({ email, setActiveStep, onClose }: IConfirmCode) => {
         (prevCode) => prevCode.slice(0, index) + prevCode.slice(index + 1)
       );
       if (previousInput) {
-        // @ts-ignore: Object is possibly 'null'.
-        previousInput.current.focus();
+        previousInput.current?.focus();
       }
     }
   }

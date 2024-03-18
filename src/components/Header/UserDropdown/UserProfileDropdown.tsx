@@ -1,19 +1,9 @@
-import { useState } from "react";
-
-import { FaUser } from "react-icons/fa6";
-
-import { RiLogoutBoxRLine } from "react-icons/ri";
-
 import { useAuthState } from "../../../store/store";
 import {
   Dropdown,
-  DropdownButtonItem,
   DropdownContent,
-  DropdownLinkItem,
   DropdownToggle
 } from "../../UI/dropdown/Dropdown";
-import { GiTabletopPlayers } from "react-icons/gi";
-import UserGamesPreview from "./UserGamesPreview";
 import UserDropdownContent from "./UserDropdownContent";
 
 const UserProfileDropdown = () => {

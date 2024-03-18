@@ -1,4 +1,4 @@
-import { ITable } from "../routes/PokerTable/PokerTable";
+import { ITable } from "../shared/interfaces/pokerTable.interface";
 
 export type UserType = {
   id: number;

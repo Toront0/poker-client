@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, ChangeEvent } from "react";
 import { useAuthState } from "../../store/store";
 import { clamp } from "../../lib/utils";
 
@@ -37,7 +37,7 @@ const InteractButtons = ({
   const authState = useAuthState((state) => state.user);
   const [hideButtons, setHideButtons] = useState(false);
 
-  const onlyNumbers = (e: any) => {
+  const onlyNumbers = (e: ChangeEvent<HTMLInputElement>) => {
     if (isNaN(+e.target.value)) {
       return;
     }
@@ -45,8 +45,8 @@ const InteractButtons = ({
     setRangeValue(+e.target.value);
   };
 
-  const maxBetOnTable = Math.max(...players?.map((p) => p.bet));
-  const minBetOnTable = Math.min(...players?.map((p) => p.bet));
+  const maxBetOnTable = Math.max(...players.map((p) => p.bet));
+  // const minBetOnTable = Math.min(...players?.map((p) => p.bet));
   const userAmongPlayers = players?.find((p) => p.id === authState.id);
 
   useEffect(() => {

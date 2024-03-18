@@ -6,48 +6,6 @@ import { GameType } from "./Game";
 import GamesSkeleton from "./GamesSkeleton";
 import GamesLayout from "../../layouts/GamesLayout";
 
-const d = [
-  {
-    id: 1,
-    createdAt: new Date(),
-    name: "Test",
-    buyIn: 10000,
-    amountOfPlayers: 2,
-    prize: 20000,
-    isPrivate: true,
-    playersInRoom: [5],
-    mode: "regular",
-    prizeDestribution: "winner takes all",
-    state: "Регистрация"
-  },
-  {
-    id: 2,
-    createdAt: new Date(),
-    name: "Test",
-    buyIn: 10000,
-    amountOfPlayers: 2,
-    prize: 20000,
-    isPrivate: true,
-    playersInRoom: [5],
-    mode: "regular",
-    prizeDestribution: "winner takes all",
-    state: "Регистрация"
-  },
-  {
-    id: 3,
-    createdAt: new Date(),
-    name: "Test",
-    buyIn: 10000,
-    amountOfPlayers: 2,
-    prize: 20000,
-    isPrivate: true,
-    playersInRoom: [5],
-    mode: "regular",
-    prizeDestribution: "winner takes all",
-    state: "Регистрация"
-  }
-];
-
 export const Home = () => {
   const { data } = useLoaderData() as { data: { data: GameType[] } };
 

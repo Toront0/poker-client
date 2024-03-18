@@ -4,13 +4,13 @@ import { useOutsideClick } from "../../lib/hooks/useOutsideClick";
 
 type Option = {
   title: string;
-  value: any;
+  value: any; // eslint-disable-line
   disable?: boolean;
 };
 
 interface ISelect {
   options: Option[];
-  onChange: (n: string, v: any) => void;
+  onChange: (n: string, v: any) => void; // eslint-disable-line
   name: string;
 }
 
@@ -26,7 +26,7 @@ const Select = ({ options, onChange, name }: ISelect) => {
       setChosenOption(options.findIndex((v) => !v.disable));
     }
 
-    const handler = (e: any) => {
+    const handler = (e: KeyboardEvent) => {
       if (e.target !== selectRef.current) {
         return;
       }
@@ -41,10 +41,11 @@ const Select = ({ options, onChange, name }: ISelect) => {
 
           break;
         case "ArrowUp":
-        case "ArrowDown":
+        case "ArrowDown": {
           const newV = e.key === "ArrowUp" ? -1 : 1;
           setChosenOption((prev) => clamp(0, options.length - 1, prev + newV));
           onChange(name, options[chosenOption + newV].value);
+        }
       }
     };
 
@@ -53,6 +54,7 @@ const Select = ({ options, onChange, name }: ISelect) => {
     return () => selectRef.current?.removeEventListener("keydown", handler);
   }, [options[chosenOption].disable, chosenOption]);
 
+  // eslint-disable-next-line
   const toggleOptions = (e: any) => {
     if (options.length * 28 + e.clientY > window.innerHeight) {
       setDropdownPos("top");

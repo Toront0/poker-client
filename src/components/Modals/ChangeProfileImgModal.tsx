@@ -1,10 +1,10 @@
-import { useEffect, useState, SyntheticEvent } from "react";
+import { useEffect, useState } from "react";
 import ModalPortal from "./ModalPortal";
 
 import { FaCheck } from "react-icons/fa6";
 import { useAuthState } from "../../store/store";
 import Button from "../Button";
-import CloseIcon from "../Icons/CloseIcon";
+
 import ModalContainer from "./ModalContainer";
 import ModalHeader from "./ModalHeader";
 

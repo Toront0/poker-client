@@ -1,7 +1,6 @@
 import { useState, ChangeEvent } from "react";
 
 import ModalPortal from "./ModalPortal";
-import CloseIcon from "../Icons/CloseIcon";
 
 import Button from "../Button";
 import { useAuthState } from "../../store/store";

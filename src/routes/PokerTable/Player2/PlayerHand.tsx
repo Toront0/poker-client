@@ -26,8 +26,6 @@ const PlayerHand = ({
   amountOfPlayers,
   authUser,
   hand,
-  status,
-  time_remains,
   showAnim,
   playerIdx,
   flop,

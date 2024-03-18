@@ -15,7 +15,7 @@ import PasswordInput from "../../components/UI/PasswordInput";
 
 interface ICreateGameForm {
   values: ICreateRoomForm;
-  handleChange: (n: any, v: any) => void;
+  handleChange: (n: any, v: any) => void; // eslint-disable-line
 }
 
 const CreateGameForm = ({ values, handleChange }: ICreateGameForm) => {
