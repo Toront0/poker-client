@@ -1,0 +1,52 @@
+import { useState } from "react";
+
+import { FaUser } from "react-icons/fa6";
+
+import { RiLogoutBoxRLine } from "react-icons/ri";
+
+import { useAuthState } from "../../../store/store";
+import {
+  Dropdown,
+  DropdownButtonItem,
+  DropdownContent,
+  DropdownLinkItem,
+  DropdownToggle
+} from "../../UI/dropdown/Dropdown";
+import { GiTabletopPlayers } from "react-icons/gi";
+import UserGamesPreview from "./UserGamesPreview";
+import UserDropdownContent from "./UserDropdownContent";
+
+const UserProfileDropdown = () => {
+  const authState = useAuthState((state) => state.user);
+
+  return (
+    <Dropdown>
+      <DropdownToggle>
+        <div className="w-9   pointer-events-none h-9 cursor-pointer rounded-full bg-gray-4">
+          <img
+            src={authState.profileImg}
+            alt={authState.username}
+            className="w-full h-full rounded-full object-cover"
+          />
+        </div>
+      </DropdownToggle>
+      <DropdownContent>
+        <div className="flex items-center gap-2">
+          <div className="w-12 h-12 rounded-full bg-opac-w-4">
+            <img
+              src={authState.profileImg}
+              alt={authState.username}
+              className="w-full h-full object-cover rounded-full"
+            />
+          </div>
+          <span className=" text-white font-semibold">
+            {authState.username}
+          </span>
+        </div>
+        <UserDropdownContent />
+      </DropdownContent>
+    </Dropdown>
+  );
+};
+
+export default UserProfileDropdown;
