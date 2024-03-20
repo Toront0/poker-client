@@ -19,14 +19,17 @@ const UserDetailUsername = ({ username, userId }: IUserDetailUsername) => {
   const handleChangeUsername = async () => {
     try {
       setEditUsername(true);
-      const res = await fetch("http://localhost:3000/change-username", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          userID: authState.id,
-          newValue: inputValue
-        })
-      });
+      const res = await fetch(
+        `https://${import.meta.env.VITE_BACKEND_ORIGIN}/change-username`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            userID: authState.id,
+            newValue: inputValue
+          })
+        }
+      );
 
       if (res.status === 400) {
         throw new Error("Такой никнейм уже занят.");

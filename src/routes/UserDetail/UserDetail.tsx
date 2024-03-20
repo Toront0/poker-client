@@ -96,7 +96,7 @@ export const UserDetail = () => {
 export const loader = async (params: LoaderFunctionArgs) => {
   const { slug } = params.params;
 
-  const res = await fetch(`http://localhost:3000/user/${slug}`);
+  const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/user/${slug}`);
 
   const data = await res.json();
 

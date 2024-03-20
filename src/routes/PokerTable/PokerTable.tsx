@@ -178,7 +178,9 @@ const PokerTable = () => {
   useEffect(() => {
     if (!wsRef.current && !authState.isLoading) {
       const ws = new WebSocket(
-        `ws://localhost:3000/ws/poker/table/${id}/${authState.user.id || 0}`
+        `wss://${import.meta.env.VITE_BACKEND_ORIGIN}/ws/poker/table/${id}/${
+          authState.user.id || 0
+        }`
       );
 
       wsRef.current = ws;
@@ -212,11 +214,17 @@ const PokerTable = () => {
           setIsLoading(true);
 
           const res = await fetch(
-            `http://localhost:3000/poker/table/${id}/${authState.user.id || 0}`
+            `https://${import.meta.env.VITE_BACKEND_ORIGIN}/poker/table/${id}/${
+              authState.user.id || 0
+            }`
           );
 
           if (res.status === 404) {
-            const res = await fetch(`http://localhost:3000/game-results/${id}`);
+            const res = await fetch(
+              `https://${
+                import.meta.env.VITE_BACKEND_ORIGIN
+              }/game-results/${id}`
+            );
 
             const data = await res.json();
 

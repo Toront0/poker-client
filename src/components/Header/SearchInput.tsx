@@ -32,7 +32,7 @@ const SearchInput = () => {
         setIsLoading(true);
         try {
           const res = await fetch(
-            `http://localhost:3000/find-${
+            `https://${import.meta.env.VITE_BACKEND_ORIGIN}/find-${
               category === 0 ? "game" : "user"
             }?search=${inputValue}`
           );

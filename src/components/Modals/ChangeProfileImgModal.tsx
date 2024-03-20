@@ -25,7 +25,9 @@ const ChangeProfileImgModal = ({ onClose }: IChangeProfileImgModal) => {
 
   useEffect(() => {
     const handler = async () => {
-      const res = await fetch("http://localhost:3000/imgs");
+      const res = await fetch(
+        `https://${import.meta.env.VITE_BACKEND_ORIGIN}/imgs`
+      );
 
       const data = await res.json();
 

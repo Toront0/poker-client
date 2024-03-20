@@ -23,7 +23,9 @@ const NewPassword = ({ onClose }: INewPassword) => {
     try {
       setIsLoading(true);
       const res = await fetch(
-        `http://localhost:3000/change-password/${values.password}`
+        `https://${import.meta.env.VITE_BACKEND_ORIGIN}/change-password/${
+          values.password
+        }`
       );
 
       if (res.status === 200) {

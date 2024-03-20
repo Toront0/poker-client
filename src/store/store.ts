@@ -11,16 +11,19 @@ import { ITable } from "../shared/interfaces/pokerTable.interface";
 export const useAuthState = create<IUseAuthState>((set, get) => ({
   user: {} as UserType,
   async signUp(username, email, password) {
-    const res = await fetch("http://localhost:3000/sign-up", {
-      method: "POST",
-      credentials: "include",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        username,
-        email,
-        password
-      })
-    });
+    const res = await fetch(
+      `https://${import.meta.env.VITE_BACKEND_ORIGIN}/sign-up`,
+      {
+        method: "POST",
+        credentials: "include",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          username,
+          email,
+          password
+        })
+      }
+    );
 
     if (res.status === 200) {
       const data = await res.json();
@@ -29,15 +32,18 @@ export const useAuthState = create<IUseAuthState>((set, get) => ({
     }
   },
   async login(username, password) {
-    const res = await fetch("http://localhost:3000/login", {
-      method: "POST",
-      credentials: "include",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        username,
-        password
-      })
-    });
+    const res = await fetch(
+      `https://${import.meta.env.VITE_BACKEND_ORIGIN}/login`,
+      {
+        method: "POST",
+        credentials: "include",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          username,
+          password
+        })
+      }
+    );
 
     if (res.status === 404) {
       return "wrong-username";
@@ -52,10 +58,13 @@ export const useAuthState = create<IUseAuthState>((set, get) => ({
     set({ user: data });
   },
   async logout() {
-    const res = await fetch("http://localhost:3000/logout", {
-      method: "GET",
-      credentials: "include"
-    });
+    const res = await fetch(
+      `https://${import.meta.env.VITE_BACKEND_ORIGIN}/logout`,
+      {
+        method: "GET",
+        credentials: "include"
+      }
+    );
 
     if (res.status === 200) {
       set({ user: {} as UserType });
@@ -63,10 +72,15 @@ export const useAuthState = create<IUseAuthState>((set, get) => ({
   },
   async authenticate() {
     try {
-      const res = await fetch("http://localhost:3000/auth", {
-        method: "GET",
-        credentials: "include"
-      });
+      const res = await fetch(
+        `https://${import.meta.env.VITE_BACKEND_ORIGIN}/auth`,
+        {
+          method: "GET",
+          credentials: "include"
+        }
+      );
+
+      console.log("res", res);
 
       if (res.status === 200) {
         const data = await res.json();
@@ -80,7 +94,9 @@ export const useAuthState = create<IUseAuthState>((set, get) => ({
     }
   },
   async doesEmailExist(email) {
-    const res = await fetch(`http://localhost:3000/check-email/${email}`);
+    const res = await fetch(
+      `https://${import.meta.env.VITE_BACKEND_ORIGIN}/check-email/${email}`
+    );
 
     if (res.status === 200) {
       return false;
@@ -89,7 +105,11 @@ export const useAuthState = create<IUseAuthState>((set, get) => ({
     }
   },
   async doesUsernameExist(username) {
-    const res = await fetch(`http://localhost:3000/check-username/${username}`);
+    const res = await fetch(
+      `https://${
+        import.meta.env.VITE_BACKEND_ORIGIN
+      }/check-username/${username}`
+    );
 
     if (res.status === 200) {
       return false;

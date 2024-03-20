@@ -16,7 +16,9 @@ const UserDetailGames = () => {
       try {
         setIsLoading(true);
         const res = await fetch(
-          `http://localhost:3000/user-games/${slug}?limit=10&page=${currPage}`
+          `https://${
+            import.meta.env.VITE_BACKEND_ORIGIN
+          }/user-games/${slug}?limit=10&page=${currPage}`
         );
 
         const data = await res.json();

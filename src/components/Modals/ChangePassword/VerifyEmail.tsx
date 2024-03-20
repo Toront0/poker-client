@@ -43,11 +43,15 @@ const VerifyEmail = ({
 
     try {
       setIsLoading(true);
-      const res = await fetch(`http://localhost:3000/check-email/${email}`);
+      const res = await fetch(
+        `https://${import.meta.env.VITE_BACKEND_ORIGIN}/check-email/${email}`
+      );
 
       if (res.status === 400) {
         const res = await fetch(
-          `http://localhost:3000/send-email-code/${email}`
+          `https://${
+            import.meta.env.VITE_BACKEND_ORIGIN
+          }/send-email-code/${email}`
         );
         if (res.ok) {
           setActiveStep(2);

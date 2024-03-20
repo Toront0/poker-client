@@ -87,14 +87,17 @@ const ConfirmCode = ({ email, setActiveStep, onClose }: IConfirmCode) => {
     e.preventDefault();
     try {
       setIsLoading(true);
-      const res = await fetch(`http://localhost:3000/verify-email-code`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          code: code,
-          email: email
-        })
-      });
+      const res = await fetch(
+        `https://${import.meta.env.VITE_BACKEND_ORIGIN}/verify-email-code`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            code: code,
+            email: email
+          })
+        }
+      );
 
       console.log("res", res);
 

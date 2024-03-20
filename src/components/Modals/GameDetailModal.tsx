@@ -45,18 +45,21 @@ const GameDetailModal = ({
 
       setIsLoading(true);
 
-      const res = await fetch("http://localhost:3000/join-game", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
+      const res = await fetch(
+        `https://${import.meta.env.VITE_BACKEND_ORIGIN}/join-game`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
 
-        body: JSON.stringify({
-          gameId: gameId,
-          playerId: authState.user.id,
-          password: password,
-          playersInRoom: playersInRoom,
-          amountOfPlayers: amountOfPlayers
-        })
-      });
+          body: JSON.stringify({
+            gameId: gameId,
+            playerId: authState.user.id,
+            password: password,
+            playersInRoom: playersInRoom,
+            amountOfPlayers: amountOfPlayers
+          })
+        }
+      );
 
       if (res.status === 409) {
         setJoinResult("invalid-password");

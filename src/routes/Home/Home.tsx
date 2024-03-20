@@ -9,6 +9,8 @@ import GamesLayout from "../../layouts/GamesLayout";
 export const Home = () => {
   const { data } = useLoaderData() as { data: { data: GameType[] } };
 
+  console.log("import.meta.env.BACKEND_URL", import.meta.env.VITE_BACKEND_URL);
+
   return (
     <GamesLayout>
       <div className="w-full h-[calc(100%-40px)] ">
@@ -23,7 +25,9 @@ export const Home = () => {
 };
 
 const getGames = async () => {
-  const res = await fetch("http://localhost:3000/games");
+  const res = await fetch(
+    `https://${import.meta.env.VITE_BACKEND_ORIGIN}/games`
+  );
 
   const data = await res.json();
 

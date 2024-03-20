@@ -39,6 +39,8 @@ const App = () => {
   const authenticate = useAuthState((state) => state.authenticate);
 
   useEffect(() => {
+    console.log("321");
+
     authenticate();
   }, []);
 

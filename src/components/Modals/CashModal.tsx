@@ -24,7 +24,9 @@ const CashModal = ({ onClose }: ICashModal) => {
     const getLastMoneyStatus = async () => {
       try {
         const res = await fetch(
-          `http://localhost:3000/money-status/${authState.user.id}`
+          `https://${import.meta.env.VITE_BACKEND_ORIGIN}/money-status/${
+            authState.user.id
+          }`
         );
 
         const data = await res.json();
@@ -63,7 +65,9 @@ const CashModal = ({ onClose }: ICashModal) => {
     try {
       setLoading(true);
       const res = await fetch(
-        `http://localhost:3000/get-money/${authState.user.id}`
+        `https://${import.meta.env.VITE_BACKEND_ORIGIN}/get-money/${
+          authState.user.id
+        }`
       );
 
       if (res.status === 200) {

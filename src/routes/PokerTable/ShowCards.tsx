@@ -1,5 +1,3 @@
-import { useEffect } from "react";
-
 import { stringToCardImg } from "../../lib/functions/helpers";
 import { useGameState } from "../../store/store";
 import { PlayerType } from "../../shared/interfaces/pokerTable.interface";
@@ -11,12 +9,6 @@ interface IShowCards {
 
 const ShowCards = ({ hand, authUser }: IShowCards) => {
   const gameState = useGameState();
-
-  useEffect(() => {
-    // if (!gameState.showedCards.includes("")) {
-    //   gameState.resetShowedCards();
-    // }
-  }, [hand]);
 
   console.log("gameState.showedCards", gameState.showedCards);
 

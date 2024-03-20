@@ -19,7 +19,9 @@ const Games = ({ games }: IGames) => {
 
   useEffect(() => {
     if (!wsRef.current) {
-      const ws = new WebSocket("ws://localhost:3000/ws/games");
+      const ws = new WebSocket(
+        `wss://${import.meta.env.VITE_BACKEND_ORIGIN}/ws/games`
+      );
       wsRef.current = ws;
 
       ws.onmessage = (msg) => {
