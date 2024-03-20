@@ -8,25 +8,30 @@ import PokerTable from "./routes/PokerTable/PokerTable";
 import CreateGame from "./routes/CreateGame/CreateGame";
 import { useAuthState } from "./store/store";
 import { useEffect } from "react";
+import ErrorPage from "./routes/ErrorPage";
 
 const router = createBrowserRouter([
   {
     element: <Home />,
     path: "/",
-    loader: loader
+    loader: loader,
+    errorElement: <ErrorPage />
   },
   {
     element: <UserDetail />,
     path: "/:slug",
-    loader: userLoader
+    loader: userLoader,
+    errorElement: <ErrorPage />
   },
   {
     element: <PokerTable />,
-    path: "/game/:id"
+    path: "/game/:id",
+    errorElement: <ErrorPage />
   },
   {
     element: <CreateGame />,
-    path: "/create-game"
+    path: "/create-game",
+    errorElement: <ErrorPage />
   }
 ]);
 
