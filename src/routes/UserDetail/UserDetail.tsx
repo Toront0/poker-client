@@ -97,7 +97,7 @@ export const loader = async (params: LoaderFunctionArgs) => {
   const { slug } = params.params;
 
   const res = await fetch(
-    `https://${import.meta.env.VITE_BACKEND_URL}/user/${slug}`
+    `https://${import.meta.env.VITE_BACKEND_ORIGIN}/user/${slug}`
   );
 
   const data = await res.json();
