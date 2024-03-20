@@ -19,7 +19,7 @@ interface IUserDetail {
   bannerImg: string;
 }
 
-export const UserDetail = () => {
+const UserDetail = () => {
   const [expandModal, setExpandModal] = useState(false);
   const authState = useAuthState((state) => state.user);
 
@@ -92,6 +92,8 @@ export const UserDetail = () => {
     </MainLayout>
   );
 };
+
+export default UserDetail;
 
 export const loader = async (params: LoaderFunctionArgs) => {
   const { slug } = params.params;

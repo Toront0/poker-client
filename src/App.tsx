@@ -1,14 +1,15 @@
+import { lazy, useEffect } from "react";
+
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Home, loader } from "./routes/Home/Home";
-import {
-  UserDetail,
-  loader as userLoader
-} from "./routes/UserDetail/UserDetail";
-import PokerTable from "./routes/PokerTable/PokerTable";
-import CreateGame from "./routes/CreateGame/CreateGame";
+import { loader as userLoader } from "./routes/UserDetail/UserDetail";
 import { useAuthState } from "./store/store";
-import { useEffect } from "react";
+
 import ErrorPage from "./routes/ErrorPage";
+
+const PokerTable = lazy(() => import("./routes/PokerTable/PokerTable"));
+const UserDetail = lazy(() => import("./routes/UserDetail/UserDetail"));
+const CreateGame = lazy(() => import("./routes/CreateGame/CreateGame"));
 
 const router = createBrowserRouter([
   {
