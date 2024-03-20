@@ -45,6 +45,8 @@ export const useAuthState = create<IUseAuthState>((set, get) => ({
       }
     );
 
+    console.log("time", new Date().getTime());
+
     if (res.status === 404) {
       return "wrong-username";
     }
