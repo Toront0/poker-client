@@ -37,7 +37,7 @@ const UserGamesPreview = ({ onBack }: IUserGamesPreview) => {
       try {
         setIsLoading(true);
         const res = await fetch(
-          `https://${import.meta.env.VITE_BACKEND_ORIGIN}/user-games/${
+          `${import.meta.env.VITE_BACKEND_ORIGIN}/user-games/${
             authState.id
           }?limit=10&page=0`
         );
