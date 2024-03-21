@@ -79,9 +79,7 @@ const UserGamesPreview = ({ onBack }: IUserGamesPreview) => {
             <div className="w-full h-full overflow-y-auto">
               {data.games?.map((v) => (
                 <Link
-                  to={`https://${import.meta.env.VITE_BACKEND_ORIGIN}/game/${
-                    v.id
-                  }`}
+                  to={`/game/${v.id}`}
                   target="__blank"
                   className="flex items-center   mb-2 hover:bg-opac-w-1  rounded px-2 py-1.5"
                 >
