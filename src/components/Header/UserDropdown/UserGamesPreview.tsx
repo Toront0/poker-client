@@ -37,7 +37,7 @@ const UserGamesPreview = ({ onBack }: IUserGamesPreview) => {
       try {
         setIsLoading(true);
         const res = await fetch(
-          `${import.meta.env.VITE_BACKEND_ORIGIN}/user-games/${
+          `https://${import.meta.env.VITE_BACKEND_ORIGIN}/user-games/${
             authState.id
           }?limit=10&page=0`
         );
@@ -79,7 +79,9 @@ const UserGamesPreview = ({ onBack }: IUserGamesPreview) => {
             <div className="w-full h-full overflow-y-auto">
               {data.games?.map((v) => (
                 <Link
-                  to={`/game/${v.id}`}
+                  to={`https://${import.meta.env.VITE_BACKEND_ORIGIN}/game/${
+                    v.id
+                  }`}
                   target="__blank"
                   className="flex items-center   mb-2 hover:bg-opac-w-1  rounded px-2 py-1.5"
                 >
