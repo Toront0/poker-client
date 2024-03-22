@@ -38,31 +38,32 @@ const SubscribeOption = ({
 
     try {
       setIsLoading(true);
-      //   await fetch(`https://${import.meta.env.VITE_BACKEND_ORIGIN}/subscribe`, {
-      //     method: "POST",
-      //     headers: { "Content-Type": "application/json" },
-      //     body: JSON.stringify({
-      //       userId: authState.id,
-      //       subscribeDate: subscribeDate
-      //     })
-      //   });
-      await fetch(`http://localhost:3000/subscribe`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          userId: authState.user.id,
-          subscribeDate: subscribeDate
-        })
-      });
+      const res = await fetch(
+        `https://${import.meta.env.VITE_BACKEND_ORIGIN}/subscribe`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            userId: authState.user.id,
+            subscribeDate: subscribeDate
+          })
+        }
+      );
 
-      authState.setUser((p) => ({
-        ...p,
-        vipFinishedAt: new Date(
-          new Date().setMonth(
-            subscribeDate === "6 month" ? 6 : subscribeDate === "month" ? 1 : 12
+      if (res.status === 200) {
+        authState.setUser((p) => ({
+          ...p,
+          vipFinishedAt: new Date(
+            new Date().setMonth(
+              subscribeDate === "6 month"
+                ? 6
+                : subscribeDate === "month"
+                ? 1
+                : 12
+            )
           )
-        )
-      }));
+        }));
+      }
     } catch (error) {
       console.error(error);
     } finally {
