@@ -51,9 +51,8 @@ const SubscribeOption = ({
       );
 
       if (res.status === 200) {
-        authState.setUser((p) => ({
-          ...p,
-          vipFinishedAt: new Date(
+        authState.setSubscribeLocally(
+          new Date(
             new Date().setMonth(
               subscribeDate === "6 month"
                 ? 6
@@ -62,7 +61,7 @@ const SubscribeOption = ({
                 : 12
             )
           )
-        }));
+        );
       }
     } catch (error) {
       console.error(error);

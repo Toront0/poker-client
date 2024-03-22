@@ -132,8 +132,12 @@ export const useAuthState = create<IUseAuthState>((set, get) => ({
 
     set({ user: user });
   },
-  setUser(v) {
-    set({ user: v });
+  setSubscribeLocally(v) {
+    const data = { ...get().user };
+
+    data.vipFinishedAt = v;
+
+    set({ user: data });
   }
 }));
 
