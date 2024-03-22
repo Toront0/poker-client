@@ -1,3 +1,4 @@
+import { Dispatch, SetStateAction } from "react";
 import { ITable } from "../shared/interfaces/pokerTable.interface";
 
 export type UserType = {
@@ -7,6 +8,7 @@ export type UserType = {
   isVerified: boolean;
   profileImg: string;
   money: number;
+  vipFinishedAt: Date;
 };
 
 export interface IUseAuthState {
@@ -23,6 +25,7 @@ export interface IUseAuthState {
   isLoading: boolean;
   setProfileImgLocally: (img: string) => void;
   addUserMoney: (amount: number) => void;
+  setUser: Dispatch<SetStateAction<UserType>>;
 }
 
 export interface IUseGameState {

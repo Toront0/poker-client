@@ -77,10 +77,6 @@ const ChangeProfileImgModal = ({ onClose }: IChangeProfileImgModal) => {
 
   return (
     <ModalPortal onClose={onClose}>
-      {/* <div
-        onMouseDown={(e) => e.stopPropagation()}
-        className="[width:clamp(300px,90%,600px)] rounded-xl overflow-hidden  bg-gradient-to-b from-purple-3 via-purple-2 to-purple-1  border-2 shadow-elev-2 flex flex-col  border-purple-3 "
-      > */}
       <ModalContainer>
         <ModalHeader onClose={onClose} title="ИЗМЕНИТЬ ФОТО ПРОФИЛЯ" />
         <div className="p-4 overflow-y-auto h-full">
@@ -95,7 +91,11 @@ const ChangeProfileImgModal = ({ onClose }: IChangeProfileImgModal) => {
                   key={i}
                   onClick={() => setActiveImg(v.isFree, v.url, i)}
                   className={`w-[77px] relative  p-0.5 h-[77px] ${
-                    v.isFree ? "silver cursor-pointer group" : "gold"
+                    v.isFree && "silver cursor-pointer group"
+                  } ${
+                    authState.user.vipFinishedAt &&
+                    !v.isFree &&
+                    "gold cursor-pointer group"
                   }  rounded-full`}
                 >
                   {checkForCurrImg(v.url, i) ? (
@@ -104,7 +104,7 @@ const ChangeProfileImgModal = ({ onClose }: IChangeProfileImgModal) => {
                     </div>
                   ) : null}
                   <div className="w-full h-full relative bg-gray-2 overflow-hidden rounded-full">
-                    {v.isFree ? null : (
+                    {!v.isFree && !authState.user.vipFinishedAt && (
                       <div className="absolute  top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 text-xs font-bold text-[#fbff22] bg-opac-b-8 rounded-full w-full h-full flex items-end justify-center">
                         VIP
                       </div>

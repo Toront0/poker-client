@@ -115,8 +115,6 @@ const ConfirmCode = ({ email, setActiveStep, onClose }: IConfirmCode) => {
     }
   };
 
-  console.log(code);
-
   return (
     <>
       <p className="text-xs text-gray-9 ">

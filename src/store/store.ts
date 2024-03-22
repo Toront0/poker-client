@@ -45,8 +45,6 @@ export const useAuthState = create<IUseAuthState>((set, get) => ({
       }
     );
 
-    console.log("time", new Date().getTime());
-
     if (res.status === 404) {
       return "wrong-username";
     }
@@ -55,7 +53,7 @@ export const useAuthState = create<IUseAuthState>((set, get) => ({
       return "invalid-password";
     }
 
-    const data = await res.json();
+    const data = (await res.json()) as UserType;
 
     set({ user: data });
   },
@@ -133,6 +131,9 @@ export const useAuthState = create<IUseAuthState>((set, get) => ({
     user.money += amount;
 
     set({ user: user });
+  },
+  setUser(v) {
+    set({ user: v });
   }
 }));
 

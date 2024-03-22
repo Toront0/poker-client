@@ -10,8 +10,6 @@ import UserLoadingSkeleton from "./UserLoadingSkeleton";
 const Header = () => {
   const authState = useAuthState();
 
-  console.log(authState);
-
   return (
     <header className="w-full h-14 px-2 justify-between flex items-center">
       <Link to="/" className="text-xl font-bold text-white">

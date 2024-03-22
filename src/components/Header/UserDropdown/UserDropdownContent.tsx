@@ -7,6 +7,8 @@ import { FaUser } from "react-icons/fa6";
 import UserGamesPreview from "./UserGamesPreview";
 import { useAuthState } from "../../../store/store";
 
+import { RiVipDiamondFill } from "react-icons/ri";
+
 const UserDropdownContent = () => {
   const authState = useAuthState();
   const [currState, setCurrState] = useState<"general" | "my-games">("general");
@@ -19,6 +21,12 @@ const UserDropdownContent = () => {
             <div className="flex items-center gap-2 text-gray-12">
               <FaUser />
               <span className="text-sm font-medium">Профиль</span>
+            </div>
+          </DropdownLinkItem>
+          <DropdownLinkItem href={`/vip`}>
+            <div className="flex items-center gap-2 text-gray-12">
+              <RiVipDiamondFill />
+              <span className="text-sm font-medium">VIP</span>
             </div>
           </DropdownLinkItem>
           <DropdownButtonItem onClick={() => setCurrState("my-games")}>

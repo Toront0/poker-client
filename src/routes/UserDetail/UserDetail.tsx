@@ -17,6 +17,7 @@ interface IUserDetail {
   username: string;
   profileImg: string;
   bannerImg: string;
+  isVip?: boolean;
 }
 
 const UserDetail = () => {
@@ -56,16 +57,14 @@ const UserDetail = () => {
               onClick={canChangeProfileImg}
               className={`min-w-[80px]  h-20 ${
                 authState.id === data.id ? "group cursor-pointer" : ""
-              } rounded-full p-0.5 silver relative`}
+              } ${data.isVip ? "gold" : ""} rounded-full p-0.5  relative`}
             >
               {authState.id === data.id && (
                 <div className=" absolute top-1/2 group-hover:flex -translate-y-1/2 left-1/2 z-20 -translate-x-1/2 h-fit text-white px-1.5 rounded tracking-wider font-extrabold text-2xl hidden items-center">
                   <MdOutlineModeEditOutline />
                 </div>
               )}
-              <div className=" absolute bottom-full left-1/2 -translate-x-1/2 h-fit text-white px-1.5  rounded tracking-wider font-extrabold text-xs flex items-center">
-                VIP
-              </div>
+
               <div className="w-full bg-black rounded-full h-full">
                 <img
                   src={

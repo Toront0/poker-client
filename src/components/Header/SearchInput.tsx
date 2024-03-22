@@ -95,6 +95,7 @@ const SearchInput = () => {
                 <Link
                   key={v.id}
                   to={`/${v.id}`}
+                  onClick={() => setInputValue("")}
                   className="flex items-center justify-between  mb-2 hover:bg-opac-w-1  rounded px-2 py-1.5"
                 >
                   <div className="flex items-center gap-2">

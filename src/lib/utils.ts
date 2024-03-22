@@ -39,3 +39,14 @@ export const formatMoney = (money: number) => {
     minimumSignificantDigits: 2
   }).format(money);
 };
+
+export const stillVip = (vipFinishedAt: Date) => {
+  const vipFinish = new Date(vipFinishedAt).getTime();
+  const timeNow = new Date().getTime();
+
+  if (vipFinish > timeNow) {
+    return true;
+  } else {
+    return false;
+  }
+};

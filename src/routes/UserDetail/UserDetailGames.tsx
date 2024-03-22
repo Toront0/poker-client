@@ -53,6 +53,7 @@ const UserDetailGames = () => {
             </span>
             {data.games?.map((v) => (
               <Link
+                key={v.id}
                 to={`/game/${v.id}`}
                 className="flex items-center   my-2 hover:bg-opac-w-1  rounded px-2 py-1.5"
               >

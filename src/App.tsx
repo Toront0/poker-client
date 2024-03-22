@@ -6,6 +6,7 @@ import { loader as userLoader } from "./routes/UserDetail/UserDetail";
 import { useAuthState } from "./store/store";
 
 import ErrorPage from "./routes/ErrorPage";
+import VIPSubscription from "./routes/VIPSubscription/VIPSubscription";
 
 const PokerTable = lazy(() => import("./routes/PokerTable/PokerTable"));
 const UserDetail = lazy(() => import("./routes/UserDetail/UserDetail"));
@@ -31,8 +32,11 @@ const router = createBrowserRouter([
   },
   {
     element: <CreateGame />,
-    path: "/create-game",
-    errorElement: <ErrorPage />
+    path: "/create-game"
+  },
+  {
+    element: <VIPSubscription />,
+    path: "/vip"
   }
 ]);
 
@@ -40,7 +44,7 @@ const App = () => {
   const authenticate = useAuthState((state) => state.authenticate);
 
   useEffect(() => {
-    console.log("321");
+    console.log("333");
 
     authenticate();
   }, []);
