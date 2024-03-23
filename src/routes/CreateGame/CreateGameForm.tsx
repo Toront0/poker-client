@@ -32,22 +32,26 @@ const CreateGameForm = ({ values, handleChange }: ICreateGameForm) => {
 
     try {
       setLoading(true);
-      const res = await fetch(`http://localhost:3000/create-game`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name: values.name,
-          buyIn: +values.buyIn,
-          amountOfPlayers: values.amountOfPlayers || 2,
-          prize: (values.amountOfPlayers || 2) * values.buyIn,
-          isPrivate: values.isPrivate === undefined ? false : values.isPrivate,
-          roomPassword: values.roomPassword || 0,
-          autoStart: values.autoStart,
-          creatorID: authState.user.id,
-          mode: values.mode,
-          prizeDestribution: values.prizeDestribution
-        })
-      });
+      const res = await fetch(
+        `https://${import.meta.env.VITE_BACKEND_ORIGIN}/create-game`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            name: values.name,
+            buyIn: +values.buyIn,
+            amountOfPlayers: values.amountOfPlayers || 2,
+            prize: (values.amountOfPlayers || 2) * values.buyIn,
+            isPrivate:
+              values.isPrivate === undefined ? false : values.isPrivate,
+            roomPassword: values.roomPassword || 0,
+            autoStart: values.autoStart,
+            creatorID: authState.user.id,
+            mode: values.mode,
+            prizeDestribution: values.prizeDestribution
+          })
+        }
+      );
 
       if (res.status === 200) {
         authState.addUserMoney(-+values.buyIn);
