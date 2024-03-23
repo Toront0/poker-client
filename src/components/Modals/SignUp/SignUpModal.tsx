@@ -24,13 +24,30 @@ const SignUpModal = ({ onClose }: ISignUpModal) => {
     useForm<ISignUpForm>(validateSignUpForm);
   const [doesEmailExist, setDoesEmailExist] = useState(false);
   const [doesUsernameExist, setDoesUsernameExist] = useState(false);
+  const [isLoaing, setIsLoading] = useState(false);
 
   const authState = useAuthState();
 
-  const handleSignUp = (e: SyntheticEvent) => {
+  const handleSignUp = async (e: SyntheticEvent) => {
     e.preventDefault();
 
-    authState.signUp(values.username, values.email, values.password);
+    try {
+      setIsLoading(true);
+
+      const res = await authState.signUp(
+        values.username,
+        values.email,
+        values.password
+      );
+
+      if (res.status === 200) {
+        onClose();
+      }
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   useEffect(() => {
@@ -67,7 +84,7 @@ const SignUpModal = ({ onClose }: ISignUpModal) => {
     <ModalPortal onClose={onClose}>
       <ModalContainer>
         <ModalHeader onClose={onClose} title="РЕГИСТРАЦИЯ" />
-        <form className="p-4">
+        <form onSubmit={handleSignUp} className="p-4">
           <div>
             <div className="flex items-center mb-1 justify-between">
               <label
@@ -196,21 +213,23 @@ const SignUpModal = ({ onClose }: ISignUpModal) => {
               </p>
             )}
           </div>
+          <div className="flex items-center justify-end gap-2 mt-6">
+            <Button type="button" onClick={onClose} variant="secondary">
+              Закрыть
+            </Button>
+            <Button
+              isLoading={isLoaing}
+              disabled={
+                isLoaing ||
+                Object.values(values).length < 4 ||
+                Object.values(errors).length >= 1
+              }
+              type="submit"
+            >
+              Зарегистрироваться
+            </Button>
+          </div>
         </form>
-        <div className="flex items-center justify-end gap-2 p-4">
-          <Button onClick={onClose} variant="secondary">
-            Закрыть
-          </Button>
-          <Button
-            disabled={
-              Object.values(values).length < 4 ||
-              Object.values(errors).length >= 1
-            }
-            onClick={handleSignUp}
-          >
-            Зарегистрироваться
-          </Button>
-        </div>
       </ModalContainer>
     </ModalPortal>
   );

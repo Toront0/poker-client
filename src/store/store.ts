@@ -4,12 +4,12 @@ import {
   IUseGameState,
   IUseToaster,
   ToastType,
-  UserType
+  AuthUser
 } from "./types";
 import { ITable } from "../shared/interfaces/pokerTable.interface";
 
 export const useAuthState = create<IUseAuthState>((set, get) => ({
-  user: {} as UserType,
+  user: {} as AuthUser,
   async signUp(username, email, password) {
     const res = await fetch(
       `https://${import.meta.env.VITE_BACKEND_ORIGIN}/sign-up`,
@@ -30,6 +30,8 @@ export const useAuthState = create<IUseAuthState>((set, get) => ({
 
       set({ user: data });
     }
+
+    return res;
   },
   async login(username, password) {
     const res = await fetch(
@@ -53,7 +55,7 @@ export const useAuthState = create<IUseAuthState>((set, get) => ({
       return "invalid-password";
     }
 
-    const data = (await res.json()) as UserType;
+    const data = (await res.json()) as AuthUser;
 
     set({ user: data });
   },
@@ -67,7 +69,7 @@ export const useAuthState = create<IUseAuthState>((set, get) => ({
     );
 
     if (res.status === 200) {
-      set({ user: {} as UserType });
+      set({ user: {} as AuthUser });
     }
   },
   async authenticate() {

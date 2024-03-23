@@ -1,6 +1,6 @@
 import { ITable } from "../shared/interfaces/pokerTable.interface";
 
-export type UserType = {
+export type AuthUser = {
   id: number;
   username: string;
   email: string;
@@ -11,8 +11,12 @@ export type UserType = {
 };
 
 export interface IUseAuthState {
-  user: UserType;
-  signUp: (username: string, email: string, password: string) => void;
+  user: AuthUser;
+  signUp: (
+    username: string,
+    email: string,
+    password: string
+  ) => Promise<Response>;
   login: (
     username: string,
     password: string

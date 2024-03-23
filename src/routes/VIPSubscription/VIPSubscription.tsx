@@ -7,6 +7,8 @@ import { useAuthState } from "../../store/store";
 const VIPSubscription = () => {
   const authState = useAuthState((s) => s.user);
 
+  console.log("authState.vipFinishedAt", authState);
+
   return (
     <MainLayout>
       <div className="w-full h-full overflow-y-auto">
