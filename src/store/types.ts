@@ -29,6 +29,7 @@ export interface IUseAuthState {
   setProfileImgLocally: (img: string) => void;
   addUserMoney: (amount: number) => void;
   setSubscribeLocally: (v: Date) => void;
+  setUsernameLocally: (v: string) => void;
 }
 
 export interface IUseGameState {

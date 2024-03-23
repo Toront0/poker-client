@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, SyntheticEvent } from "react";
 import { MdOutlineModeEditOutline } from "react-icons/md";
 import { IoMdClose, IoMdCheckmark } from "react-icons/io";
 import LoadSpinner from "../../components/UI/LoadSpinner";
@@ -13,10 +13,11 @@ const UserDetailUsername = ({ username, userId }: IUserDetailUsername) => {
   const [editUsername, setEditUsername] = useState(false);
   const [inputValue, setInputValue] = useState(() => username);
   const [changingUsername, setChangingUsername] = useState(false);
-  const authState = useAuthState((state) => state.user);
+  const authState = useAuthState();
   const [error, setError] = useState("");
 
-  const handleChangeUsername = async () => {
+  const handleChangeUsername = async (e: SyntheticEvent) => {
+    e.preventDefault();
     try {
       setEditUsername(true);
       const res = await fetch(
@@ -25,11 +26,14 @@ const UserDetailUsername = ({ username, userId }: IUserDetailUsername) => {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
-            userID: authState.id,
+            userID: authState.user.id,
             newValue: inputValue
           })
         }
       );
+
+      authState.setUsernameLocally(inputValue);
+      setEditUsername(false);
 
       if (res.status === 400) {
         throw new Error("Такой никнейм уже занят.");
@@ -71,28 +75,34 @@ const UserDetailUsername = ({ username, userId }: IUserDetailUsername) => {
               )}
           </>
         ) : (
-          <span className="text-white text-xl font-bold block">{username}</span>
+          <span className="text-white text-xl font-bold block">
+            {authState.user.id === userId ? authState.user.username : username}
+          </span>
         )}
       </div>
 
-      {authState.id === userId && (
+      {authState.user.id === userId && (
         <>
           {editUsername ? (
-            <div className="flex items-center gap-1">
+            <form
+              onSubmit={handleChangeUsername}
+              className="flex items-center gap-1"
+            >
               <button
+                type="button"
                 onClick={() => setEditUsername(false)}
                 className="text-lg text-white bg-[#ff1818] px-0.5 py-0.5 rounded"
               >
                 <IoMdClose />
               </button>
               <button
-                onClick={handleChangeUsername}
                 disabled={
                   inputValue === username ||
                   inputValue.length < 3 ||
                   inputValue.length > 14 ||
                   changingUsername
                 }
+                type="submit"
                 className="text-lg text-white disabled:bg-purple-4 disabled:text-gray-7 bg-purple-7 px-0.5 py-0.5 rounded"
               >
                 {changingUsername ? (
@@ -101,7 +111,7 @@ const UserDetailUsername = ({ username, userId }: IUserDetailUsername) => {
                   <IoMdCheckmark />
                 )}
               </button>
-            </div>
+            </form>
           ) : (
             <button
               onClick={() => setEditUsername(true)}

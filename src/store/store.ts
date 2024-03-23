@@ -140,6 +140,15 @@ export const useAuthState = create<IUseAuthState>((set, get) => ({
     data.vipFinishedAt = v;
 
     set({ user: data });
+  },
+  setUsernameLocally(v) {
+    const data = { ...get().user };
+
+    data.username = v;
+
+    set({ user: data });
+
+    set({});
   }
 }));
 
