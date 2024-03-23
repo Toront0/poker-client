@@ -4,18 +4,18 @@ import { useAuthState, useToaster } from "../../store/store";
 
 import { filterGames } from "../../lib/functions/helpers";
 
+import { GiPokerHand } from "react-icons/gi";
+import { Link } from "react-router-dom";
+
 interface IGames {
   games: GameType[];
 }
 
 const Games = ({ games }: IGames) => {
-  // const data = useLoaderData() as GameType[];
   const [data, setData] = useState(games);
   const wsRef = useRef<WebSocket>();
   const authState = useAuthState((s) => s.user);
   const addToast = useToaster((s) => s.addToast);
-
-  console.log(data);
 
   useEffect(() => {
     if (!wsRef.current) {
@@ -94,47 +94,62 @@ const Games = ({ games }: IGames) => {
 
   return (
     <main className="w-full  rounded h-full flex flex-col">
-      <div className="w-full text-[9px] md:text-xs lg:text-sm h-6 bg-gray-2 rounded-t grid md:grid-cols-8 grid-cols-5 items-center ">
-        <div className=" h-full items-center flex col-span-2 px-1 text-gray-10 ">
-          Название
+      {games.length > 0 ? (
+        <>
+          <div className="w-full text-[9px] md:text-xs lg:text-sm h-6 bg-gray-2 rounded-t grid md:grid-cols-8 grid-cols-5 items-center ">
+            <div className=" h-full items-center flex col-span-2 px-1 text-gray-10 ">
+              Название
+            </div>
+            <div className=" h-full items-center flex justify-center col-span-1  px-1 text-gray-10 border-x border-opac-w-2">
+              Бай-ин
+            </div>
+            <div className=" h-full items-center flex justify-center  col-span-1 px-1 text-gray-10 ">
+              Кол-во игроков
+            </div>
+            <div className=" h-full items-center flex justify-center  col-span-1 px-1 text-gray-10 border-l border-opac-w-2">
+              Приз
+            </div>
+            <div className="  h-full items-center hidden md:flex justify-center  col-span-1 px-1 text-gray-10 border-l border-opac-w-2">
+              Статус
+            </div>
+            <div className="  h-full items-center hidden md:flex justify-center  col-span-1 px-1 text-gray-10 border-l border-opac-w-2">
+              Скорость
+            </div>
+            <div className=" h-full items-center hidden md:flex justify-center  col-span-1 px-2 text-gray-10 border-l border-opac-w-2">
+              Состояние
+            </div>
+          </div>
+          <section className="h-full overflow-y-auto  rounded-b">
+            {filterGames(data, authState.id).map((v) => (
+              <Game
+                key={v.id}
+                id={v.id}
+                createdAt={v.createdAt}
+                name={v.name}
+                buyIn={v.buyIn}
+                amountOfPlayers={v.amountOfPlayers}
+                prize={v.prize}
+                isPrivate={v.isPrivate}
+                playersInRoom={v.playersInRoom}
+                mode={v.mode}
+                prizeDestribution={v.prizeDestribution}
+                state={v.state}
+              />
+            ))}
+          </section>
+        </>
+      ) : (
+        <div className="flex text-gray-12 h-full flex-col gap-2 items-center justify-center">
+          <GiPokerHand className="text-7xl" />
+          <span className="text-xl">Нет активных игр</span>
+          <Link
+            to="/create-game"
+            className="text-sm px-2 bg-opac-w-2 py-1 rounded-sm"
+          >
+            Создать новую
+          </Link>
         </div>
-        <div className=" h-full items-center flex justify-center col-span-1  px-1 text-gray-10 border-x border-opac-w-2">
-          Бай-ин
-        </div>
-        <div className=" h-full items-center flex justify-center  col-span-1 px-1 text-gray-10 ">
-          Кол-во игроков
-        </div>
-        <div className=" h-full items-center flex justify-center  col-span-1 px-1 text-gray-10 border-l border-opac-w-2">
-          Приз
-        </div>
-        <div className="  h-full items-center hidden md:flex justify-center  col-span-1 px-1 text-gray-10 border-l border-opac-w-2">
-          Статус
-        </div>
-        <div className="  h-full items-center hidden md:flex justify-center  col-span-1 px-1 text-gray-10 border-l border-opac-w-2">
-          Скорость
-        </div>
-        <div className=" h-full items-center hidden md:flex justify-center  col-span-1 px-2 text-gray-10 border-l border-opac-w-2">
-          Состояние
-        </div>
-      </div>
-      <section className="h-full overflow-y-auto  rounded-b">
-        {filterGames(data, authState.id).map((v) => (
-          <Game
-            key={v.id}
-            id={v.id}
-            createdAt={v.createdAt}
-            name={v.name}
-            buyIn={v.buyIn}
-            amountOfPlayers={v.amountOfPlayers}
-            prize={v.prize}
-            isPrivate={v.isPrivate}
-            playersInRoom={v.playersInRoom}
-            mode={v.mode}
-            prizeDestribution={v.prizeDestribution}
-            state={v.state}
-          />
-        ))}
-      </section>
+      )}
     </main>
   );
 };
