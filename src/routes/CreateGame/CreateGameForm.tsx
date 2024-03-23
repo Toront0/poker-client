@@ -32,26 +32,22 @@ const CreateGameForm = ({ values, handleChange }: ICreateGameForm) => {
 
     try {
       setLoading(true);
-      const res = await fetch(
-        `https://${import.meta.env.VITE_BACKEND_ORIGIN}/create-game`,
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            name: values.name,
-            buyIn: +values.buyIn,
-            amountOfPlayers: values.amountOfPlayers || 2,
-            prize: (values.amountOfPlayers || 2) * values.buyIn,
-            isPrivate:
-              values.isPrivate === undefined ? false : values.isPrivate,
-            roomPassword: values.roomPassword || 0,
-            autoStart: values.autoStart,
-            creatorID: authState.user.id,
-            mode: values.mode,
-            prizeDestribution: values.prizeDestribution
-          })
-        }
-      );
+      const res = await fetch(`http://localhost:3000/create-game`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: values.name,
+          buyIn: +values.buyIn,
+          amountOfPlayers: values.amountOfPlayers || 2,
+          prize: (values.amountOfPlayers || 2) * values.buyIn,
+          isPrivate: values.isPrivate === undefined ? false : values.isPrivate,
+          roomPassword: values.roomPassword || 0,
+          autoStart: values.autoStart,
+          creatorID: authState.user.id,
+          mode: values.mode,
+          prizeDestribution: values.prizeDestribution
+        })
+      });
 
       if (res.status === 200) {
         authState.addUserMoney(-+values.buyIn);
@@ -176,8 +172,8 @@ const CreateGameForm = ({ values, handleChange }: ICreateGameForm) => {
           </div>
           <Input
             placeholder="> 100"
-            min={10}
-            max={50000}
+            min={100}
+            max={authState.user.money}
             type="number"
             value={values.buyIn || ""}
             name="buyIn"
@@ -186,11 +182,15 @@ const CreateGameForm = ({ values, handleChange }: ICreateGameForm) => {
           />
           <div className="mt-6 w-full">
             <InputRange
-              min={100}
-              step={100}
+              min={0}
+              step={10}
               max={authState.user.money}
               name="buyIn"
-              value={values.buyIn}
+              value={
+                values.buyIn > authState.user.money
+                  ? authState.user.money
+                  : values.buyIn
+              }
               onChange={(e) => handleChange(e.target.name, +e.target.value)}
             />
           </div>
